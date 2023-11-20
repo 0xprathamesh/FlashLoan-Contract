@@ -41,6 +41,9 @@ contract FlashLoan {
         uint amount0Out = _busdBorrow==token0?_amount:0;
         uint amount1Out = _busdBorrow==token1?_amount:0;
 
+        bytes memory data = abi.encode(_busdBorrow,_amount,msg.sender);
+        IUniswapV2Pair(pair).swap(amount0Out, amount1Out, address(this), data);
+
         
 
       
